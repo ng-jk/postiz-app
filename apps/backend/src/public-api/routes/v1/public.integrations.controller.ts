@@ -329,6 +329,7 @@ export class PublicIntegrationsController {
         id: integration.id,
         name: integration.customName || integration.name,
         identifier: integration.providerIdentifier,
+        internalId: integration.internalId,
         picture: integration.picture,
         disabled: integration.disabled,
         profile: integration.profile,

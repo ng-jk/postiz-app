@@ -22,6 +22,12 @@ export const useMenuItem = () => {
 
   const firstMenu = [
     {
+      name: 'Workflows',
+      icon: <span aria-hidden="true">◫</span>,
+      path: '/workflows/',
+      onClick: () => window.location.assign('/workflows/'),
+    },
+    {
       name: isGeneral ? t('calendar', 'Calendar') : t('launches', 'Launches'),
       icon: (
         <svg

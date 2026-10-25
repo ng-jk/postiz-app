@@ -600,7 +600,7 @@ export class YoutubeProvider extends SocialAbstract implements SocialProvider {
     // the final byte is received, so nothing here is irreversible yet - the
     // bytes themselves are streamed by finalizePost, outside this activity.
     const session = await this.fetch(
-      'https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=id,snippet,status&notifySubscribers=true',
+      `https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=id,snippet,status&notifySubscribers=${settings.notifySubscribers !== false}`,
       {
         method: 'POST',
         headers: {
@@ -620,6 +620,9 @@ export class YoutubeProvider extends SocialAbstract implements SocialProvider {
           status: {
             privacyStatus: settings.type,
             selfDeclaredMadeForKids: settings.selfDeclaredMadeForKids === 'yes',
+            ...(typeof settings.containsSyntheticMedia === 'boolean'
+              ? { containsSyntheticMedia: settings.containsSyntheticMedia }
+              : {}),
           },
         }),
       }

@@ -1,5 +1,6 @@
 import {
   IsArray,
+  IsBoolean,
   IsDefined,
   IsIn,
   IsOptional,
@@ -64,6 +65,14 @@ export class YoutubeTagsSettings {
 }
 
 export class YoutubeSettingsDto {
+  @IsOptional()
+  @IsBoolean()
+  notifySubscribers?: boolean;
+
+  @IsOptional()
+  @IsBoolean()
+  containsSyntheticMedia?: boolean;
+
   @IsString()
   @MinLength(2)
   @MaxLength(100)
